@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * ActivityStreams
+ * 
+ * Things in this namespace are to help deal with activites and objects
+ */
 namespace ActivityStreams\ActivityStreams;
 
 /**

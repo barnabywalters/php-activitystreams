@@ -1,9 +1,9 @@
 <?php
+
 /**
  * ActivityStreams
  * 
  * Things in this namespace are to help deal with activites and objects
- * @todo put this in it’s own package
  */
 namespace ActivityStreams\ActivityStreams;
 	
