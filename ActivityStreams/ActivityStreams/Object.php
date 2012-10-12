@@ -28,7 +28,7 @@ class Object {
 	 * 
 	 * The entity who created/authored the object
 	 */
-	public $objectType;
+	public $author;
 	
 	/**
 	 * Content

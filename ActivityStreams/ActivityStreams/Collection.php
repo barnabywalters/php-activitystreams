@@ -94,23 +94,27 @@ class Collection {
 	 */
 	public function __construct($items=null)
 	{
-		$this -> items = $items;
+		if (!empty($items))
+		{
+			$this -> items = $items;
+			$this -> totalItems = count($items);
+		}
 	}
 	
 	/**
 	 * Order Items
 	 * 
-	 * Orders all the objects in $items. By default this is by pubdate (asc), but it can be configured
-	 * to use datetime updated or displayname (alpha), and the order can be set to desc.
+	 * Orders all the objects in $items. By default this is by pubdate (desc), but it can be configured
+	 * to use datetime updated or displayname (alpha), and the order can be set to asc.
 	 * 
 	 */
-	public function orderItems($orderBy='published', $direction='asc')
+	public function orderItems($orderBy='published', $direction='desc')
 	{
 		if (empty($this -> items)) return false;
 		
-		$rawItems = $this -> items;
-		
-		$orderedItems = usort($rawItems, function ($a, $b) use ($orderBy, $direction) {
+		$orderedItems = $this -> items;
+
+		$result = usort($orderedItems, function ($a, $b) use ($orderBy, $direction) {
 			if ($a === $b)
 			{
 				$diff = 0;
@@ -131,12 +135,22 @@ class Collection {
 			}
 			
 			// Compensate for direction
-			if ($direction == 'desc') $diff = $diff * -1;
+			if ($direction == 'asc') $diff = $diff * -1;
 			
 			return $diff;
 		});
 		
-		$this -> items = $orderedItems;
+		if ($result == false)
+		{
+			// Failed for some reason! Return false
+			return false;
+		}
+		else
+		{
+			// Worked
+			$this -> items = $orderedItems;
+			return true;
+		}
 	}
 }
 
