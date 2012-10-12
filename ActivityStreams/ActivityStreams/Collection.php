@@ -1,9 +1,10 @@
 <?php
-
 /**
  * ActivityStreams
  * 
  * Things in this namespace are to help deal with activites and objects
+ * 
+ * @author Barnaby Walters http://waterpigs.co.uk <barnaby@waterpigs.co.uk>
  */
 namespace ActivityStreams\ActivityStreams;
 	
@@ -21,7 +22,10 @@ class Collection {
 	/**
 	 * Items
 	 * 
-	 * An array of Activities/Objects
+	 * An array of Activities/Objects. The spec is actually a little unclear about whether or this
+	 * can contain Activities or Objects or both or whether an activity *is* an object, so I am
+	 * temted to take a lenient approach at the moment, and say a collection can have *either* 
+	 * Activities or Objects **but not both**.
 	 */
 	public $items;
 	
@@ -75,8 +79,126 @@ class Collection {
 	 * The URI/IRI of the current resource.
 	 */
 	public $url;
+	
+	/**
+	 * Construct
+	 * 
+	 * By default the constructor takes an array of items which is applied to $items. If the collection
+	 * is a referenced collection simply call construct with no params and apply $url manually.
+	 * 
+	 * By default, if $items is supplied, it is *not* ordered (that should be done by
+	 * {@see Collection::orderItems}) but it *is* iterated through and cleaned up.
+	 * 
+	 * @param array $items An array of items to add to the collection
+	 * @todo Implement cleaning wherever best (in Activity/Object?)
+	 */
+	public function __construct($items=null)
+	{
+		$this -> items = $items;
+	}
+	
+	/**
+	 * Order Items
+	 * 
+	 * Orders all the objects in $items. By default this is by pubdate (asc), but it can be configured
+	 * to use datetime updated or displayname (alpha), and the order can be set to desc.
+	 * 
+	 */
+	public function orderItems($orderBy='published', $direction='asc')
+	{
+		if (empty($this -> items)) return false;
+		
+		$rawItems = $this -> items;
+		
+		$orderedItems = usort($rawItems, function ($a, $b) use ($orderBy, $direction) {
+			if ($a === $b)
+			{
+				$diff = 0;
+			}
+			else if (is_a($a -> {$orderBy}, '\DateTime'))
+			{
+				// 1 if $a before $b, -1 vice versa
+				$diff = ($a -> {$orderBy} > $b -> {$orderBy}) ? 1 : -1;
+			}
+			else if (is_string($a -> {$orderBy}))
+			{
+				$diff = strcmp($a -> {$orderBy}, $b -> {$orderBy});
+			}
+			else
+			{
+				// Uncomparable, so return 0
+				$diff = 0;
+			}
+			
+			// Compensate for direction
+			if ($direction == 'desc') $diff = $diff * -1;
+			
+			return $diff;
+		});
+		
+		$this -> items = $orderedItems;
+	}
 }
 
-
+/**
+ * CollectionLinks
+ * 
+ * An object full of LinkObjects — the value of the $links property of a Collection
+ */
+class CollectionLinks {
+	/**
+	 * First
+	 * 
+	 * A LinkObject referencing the first page in this multi-page collection
+	 * 
+	 * @see LinkObject
+	 */
+	public $first;
+	
+	/**
+	 * Last
+	 * 
+	 * A LinkObject referencing the last page in this multi-page collection
+	 * 
+	 * @see LinkObject
+	 */
+	public $last;
+	
+	/**
+	 * Prev
+	 * 
+	 * A LinkObject referencing the next page in this multi-page collection
+	 * 
+	 * @see LinkObject
+	 */
+	public $prev;
+	
+	/**
+	 * Next
+	 * 
+	 * A LinkObject referencing the next page in this multi-page collection
+	 * 
+	 * @see LinkObject
+	 */
+	public $next;
+	
+	/**
+	 * Current
+	 * 
+	 * A LinkObject referencing most up-to-date page in the collection
+	 * 
+	 * @see LinkObject
+	 */
+	public $current;
+	
+	/**
+	 * Self
+	 * 
+	 * A LinkObject referencing this page of the multi-page collection
+	 * 
+	 * @see LinkObject
+	 */
+	public $self;
+}
 
 // EOF

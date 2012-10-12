@@ -4,6 +4,8 @@
  * ActivityStreams
  * 
  * Things in this namespace are to help deal with activites and objects
+ * 
+ * @author Barnaby Walters http://waterpigs.co.uk <barnaby@waterpigs.co.uk>
  */
 namespace ActivityStreams\ActivityStreams;
 	
@@ -19,7 +21,7 @@ class Activity {
 	 * 
 	 * A representation of the person/entity which carried out the action.
 	 * 
-	 * Should be an instance of ActivityStreams\Object
+	 * Should be an instance of Object with objectType = 'person'
 	 */
 	public $actor;
 	

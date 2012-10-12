@@ -4,6 +4,8 @@
  * ActivityStreams
  * 
  * Things in this namespace are to help deal with activites and objects
+ * 
+ * @author Barnaby Walters http://waterpigs.co.uk <barnaby@waterpigs.co.uk>
  */
 namespace ActivityStreams\ActivityStreams;
 
