@@ -5,8 +5,8 @@
     "keywords": ["activitystreams", "indieweb", "activity", "federated", "social", "web"],
     "autoload": {
         "psr-0": {
-            "ActivityStreams\\ActivityStreams": "ActivityStreams\ActivityStreams",
-            "ActivityStreams\\Events": "ActivityStreams\Events"
+            "ActivityStreams\\ActivityStreams": "ActivityStreams\\ActivityStreams",
+            "ActivityStreams\\Event": "ActivityStreams\\Event"
         }
     }
 }
