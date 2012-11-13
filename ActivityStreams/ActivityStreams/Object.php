@@ -42,7 +42,7 @@ class Object {
 	 * 
 	 * Plain-text human-readable representation of the name of the object
 	 */
-	public $name;
+	public $displayName;
 	
 	/**
 	 * Downstream Duplicates
