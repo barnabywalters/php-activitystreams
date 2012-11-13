@@ -1,6 +1,6 @@
 <?php
 
-namespace ActivityStreams\Events;
+namespace ActivityStreams\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
@@ -9,7 +9,7 @@ use Symfony\Component\EventDispatcher\Event;
  *
  * @author barnabywalters
  */
-class ActivityEvent extends Event{
+class ActivityEvent extends Event {
 
     /**
      * Object
