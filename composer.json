@@ -2,10 +2,11 @@
     "name": "activitystreams/activitystreams",
     "type": "library",
     "description": "A set of PSR-0 autoloadable classes for representing ActivityStreams activities and objects in PHP",
-    "keywords": ["activitystreams", "indieweb", "activity"],
+    "keywords": ["activitystreams", "indieweb", "activity", "federated", "social", "web"],
     "autoload": {
         "psr-0": {
-            "ActivityStreams\\ActivityStreams": ""
+            "ActivityStreams\\ActivityStreams": "ActivityStreams\ActivityStreams",
+            "ActivityStreams\\Events": "ActivityStreams\Events"
         }
     }
 }
