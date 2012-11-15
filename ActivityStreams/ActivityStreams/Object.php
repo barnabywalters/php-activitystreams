@@ -49,8 +49,9 @@ class Object {
      * Downstream Duplicates
      * 
      * Array of IRIs of objects which duplicate this object’s content
+     * @var array
      */
-    public $downstreamDuplicates;
+    public $downstreamDuplicates = array();
 
     /**
      * ID
@@ -99,7 +100,7 @@ class Object {
      * 
      * An array of IRIs representing upstream objects which duplicate this object’s content
      */
-    public $upstreamDuplicates;
+    public $upstreamDuplicates = array();
 
     /**
      * URL
