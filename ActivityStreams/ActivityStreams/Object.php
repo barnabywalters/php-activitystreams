@@ -107,6 +107,8 @@ class Object {
      * An IRI identifying a resource providing a representation of this object
      */
     public $url;
+    
+    public $tags;
 
     public function getId() {
         return $this->id;
