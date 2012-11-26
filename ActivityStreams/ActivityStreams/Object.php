@@ -118,6 +118,10 @@ class Object {
     public function getObjectType() {
         return $this->objectType;
     }
+    
+    public function getType() {
+        return $this->objectType;
+    }
 
     public function getUrl() {
         return $this->url;
