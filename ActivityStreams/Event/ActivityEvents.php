@@ -57,8 +57,7 @@ namespace ActivityStreams\Event;
  * So:
  * 
  * 1. Any plugin which requires all auto-linking to have happened before it is 
- *    called (perhaps something which processes &lt;a&gt; tags) has a priority 
- *    less than 100
+ *    called has a priority less than 100
  * 1. The fallback (most generic) auto-linking plugin (cassis auto_link) is 
  *    called with priority 100
  * 1. The Contacts linking module is called with priority greater than 100
@@ -117,3 +116,5 @@ final class ActivityEvents {
      */
     const POST_POST = 'activitystreams.post.post';
 }
+
+// EOF
