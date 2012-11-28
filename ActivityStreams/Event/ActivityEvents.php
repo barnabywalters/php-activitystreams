@@ -82,12 +82,14 @@ final class ActivityEvents {
      * 
      * ## Priorities
      * 
-     * 100 Guarantee Auto Linked
-     * 0 Guarantee HTML
+     * 100 Guarantee HTML
+     * 0 Guarantee Auto Linked
      * 
      * @todo figure priorities out
      */
     const POST_PRE = 'activitystreams.post.pre';
+    const POST_PRE_GUARANTEE_HTML = 100;
+    const POST_PRE_GUARANTEE_AUTO_LINKED = 0;
     
     /**
      * After post
@@ -115,6 +117,7 @@ final class ActivityEvents {
      * @todo figure priorities out
      */
     const POST_POST = 'activitystreams.post.post';
+    const POST_POST_GUARANTEE_SYNDICATED = 0;
 }
 
 // EOF
