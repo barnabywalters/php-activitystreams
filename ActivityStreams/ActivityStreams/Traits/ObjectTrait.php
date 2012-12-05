@@ -6,8 +6,11 @@ use DateTime;
 
 /**
  * ObjectTrait
+ * 
+ * Satisfies ObjectInterface with setter and getter methods. Does not define
+ * properties as visibility, docblocks etc. are up to the developer to define.
  *
- * @author barnabywalters
+ * @author Barnaby Walters
  */
 trait ObjectTrait {
     public function getId() {
