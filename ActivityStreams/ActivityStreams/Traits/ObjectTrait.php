@@ -37,7 +37,6 @@ trait ObjectTrait {
     public function getAttachments() {
         return $this->attachments;
     }
-
     public function setAttachments(array $attachments) {
         $this->attachments = $attachments;
     }
@@ -45,7 +44,6 @@ trait ObjectTrait {
     public function getAuthor() {
         return $this->author;
     }
-
     public function setAuthor($author) {
         $this->author = $author;
     }
@@ -53,7 +51,6 @@ trait ObjectTrait {
     public function getContent() {
         return $this->content;
     }
-
     public function setContent($content) {
         $this->content = $content;
     }
@@ -61,7 +58,6 @@ trait ObjectTrait {
     public function getDisplayName() {
         return $this->displayName;
     }
-
     public function setDisplayName($displayName) {
         $this->displayName = $displayName;
     }
@@ -69,7 +65,6 @@ trait ObjectTrait {
     public function getDownstreamDuplicates() {
         return $this->downstreamDuplicates;
     }
-
     public function setDownstreamDuplicates(array $downstreamDuplicates) {
         $this->downstreamDuplicates = $downstreamDuplicates;
     }
@@ -77,7 +72,6 @@ trait ObjectTrait {
     public function getImage() {
         return $this->image;
     }
-
     public function setImage($image) {
         $this->image = $image;
     }
@@ -85,7 +79,6 @@ trait ObjectTrait {
     public function getPublished() {
         return $this->published;
     }
-
     public function setPublished(DateTime $published) {
         $this->published = $published;
     }
@@ -93,7 +86,6 @@ trait ObjectTrait {
     public function getSummary() {
         return $this->summary;
     }
-
     public function setSummary($summary) {
         $this->summary = $summary;
     }
@@ -101,7 +93,6 @@ trait ObjectTrait {
     public function getUpdated() {
         return $this->updated;
     }
-
     public function setUpdated(DateTime $updated) {
         $this->updated = $updated;
     }
@@ -109,7 +100,6 @@ trait ObjectTrait {
     public function getUpstreamDuplicates() {
         return $this->upstreamDuplicates;
     }
-
     public function setUpstreamDuplicates(array $upstreamDuplicates) {
         $this->upstreamDuplicates = $upstreamDuplicates;
     }
