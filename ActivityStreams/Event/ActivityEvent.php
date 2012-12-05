@@ -8,8 +8,11 @@ use Symfony\Component\EventDispatcher\Event;
 
 /**
  * ActivityEvent
- *
- * @author barnabywalters
+ * 
+ * Represents an activity as it happens in software within the Symfony Event 
+ * Dispatcher component.
+ * 
+ * @author Barnaby Walters
  */
 class ActivityEvent extends Event implements ActivityInterface {
     use ActivityTrait;
