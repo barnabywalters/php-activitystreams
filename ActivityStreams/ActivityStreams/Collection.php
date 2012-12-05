@@ -5,21 +5,25 @@ namespace ActivityStreams\ActivityStreams;
 /**
  * Collection
  * 
- * Container class for Activity objects/Objects, representing a collection/stream/feed of objects.
+ * Container class for Activity objects/Objects, representing a collection/
+ * stream/feed of objects.
  * 
- * The minimum required properties are one of either $items or $url. Typically $url would be used
- * in cases where it’s not appropriate to load the entire contents of the collection (e.g.
- * embedded collections). The spec says $url should be to a JSON file, IMO this is not webby. It
- * should be the URL of the resource, and it should respond intelligently to content negotiation.
+ * The minimum required properties are one of either $items or $url. Typically 
+ * $url would be used in cases where it’s not appropriate to load the entire 
+ * contents of the collection (e.g. embedded collections). The spec says $url 
+ * should be to a JSON file, IMO this is not webby. It should be the URL of the 
+ * resource, and it should respond intelligently to content negotiation.
  */
 class Collection implements CollectionInterface {
     use Traits\CollectionTrait;
     /**
      * Items
      * 
-     * An array of Activities/Objects. The spec is actually a little unclear about whether or this
-     * can contain Activities or Objects or both or whether an activity *is* an object, so I am
-     * temted to take a lenient approach at the moment, and say a collection can have *either* 
+     * An array of Activities/Objects. The spec is actually a little unclear 
+     * about whether or this can contain Activities or Objects or both or 
+     * whether an activity *is* an object, so I am temted to take a lenient 
+     * approach at the moment, and say a collection can have *either* 
+     * 
      * Activities or Objects **but not both**.
      */
     public $items;
@@ -34,30 +38,32 @@ class Collection implements CollectionInterface {
     /**
      * Items Before
      * 
-     * An instance of {@see \DateTime}  representing the latest date an activity in $item occured
+     * An instance of {@see \DateTime}  representing the latest date an activity
+     * in $item occured
      */
     public $itemsBefore;
 
     /**
      * Items Per Page
      * 
-     * If paged, the maximum number of items which will be contained in $items per page
+     * If paged, the maximum number of items which will be contained in $items 
+     * per page
      */
     public $itemsPerPage;
 
     /**
      * Links
      * 
-     * A collection of links (object) connecting this page of objects to other pages of objects considered to be
-     * within the same set.
+     * A collection of links (object) connecting this page of objects to other 
+     * pages of objects considered to be within the same set.
      */
     public $links;
 
     /**
      * Start Index
      * 
-     * The absolute index of the first item in $items relative to the entire collection, not just the 
-     * current page.
+     * The absolute index of the first item in $items relative to the entire 
+     * collection, not just the current page.
      */
     public $startIndex;
 
@@ -78,11 +84,13 @@ class Collection implements CollectionInterface {
     /**
      * Construct
      * 
-     * By default the constructor takes an array of items which is applied to $items. If the collection
-     * is a referenced collection simply call construct with no params and apply $url manually.
+     * By default the constructor takes an array of items which is applied to 
+     * $items. If the collection is a referenced collection simply call 
+     * construct with no params and apply $url manually.
      * 
-     * By default, if $items is supplied, it is *not* ordered (that should be done by
-     * {@see Collection::orderItems}) but it *is* iterated through and cleaned up.
+     * By default, if $items is supplied, it is *not* ordered (that should be 
+     * done by {@see Collection::orderItems}) but it *is* iterated through and 
+     * cleaned up.
      * 
      * @param array $items An array of items to add to the collection
      * @todo Implement cleaning wherever best (in Activity/Object?)
@@ -97,9 +105,9 @@ class Collection implements CollectionInterface {
     /**
      * Order Items
      * 
-     * Orders all the objects in $items. By default this is by pubdate (desc), but it can be configured
-     * to use datetime updated or displayname (alpha), and the order can be set to asc.
-     * 
+     * Orders all the objects in $items. By default this is by pubdate (desc), 
+     * but it can be configured to use datetime updated or displayname (alpha), 
+     * and the order can be set to asc.
      */
     public function orderItems($orderBy = 'published', $direction = 'desc') {
         if (empty($this->items))
@@ -142,7 +150,9 @@ class Collection implements CollectionInterface {
 /**
  * CollectionLinks
  * 
- * An object full of LinkObjects — the value of the $links property of a Collection
+ * An object full of LinkObjects — the value of the $links property of a 
+ * Collection
+ * 
  * @todo put this in another file
  */
 class CollectionLinks {
