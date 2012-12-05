@@ -3,6 +3,9 @@
     "type": "library",
     "description": "A set of PSR-0 autoloadable classes for representing ActivityStreams activities and objects in PHP",
     "keywords": ["activitystreams", "indieweb", "activity", "federated", "social", "web"],
+    "require": {
+        "php": ">=5.4"
+    },
     "autoload": {
         "psr-0": {
             "ActivityStreams": ""
