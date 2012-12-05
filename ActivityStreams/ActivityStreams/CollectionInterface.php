@@ -6,7 +6,7 @@ namespace ActivityStreams\ActivityStreams;
  * Collection Interface
  * @author barnabywalters
  */
-interface CollectionInterface {
+interface CollectionInterface extends Traversable, ArrayAccess {
     /**
      * Get Total Items
      * @return int

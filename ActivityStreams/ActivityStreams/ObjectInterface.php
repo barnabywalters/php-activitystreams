@@ -2,19 +2,35 @@
 
 namespace ActivityStreams\ActivityStreams;
 
+use DateTime;
+
 /**
  * Object Interface
  * 
  * Allows PHP objects representing ActivityStreams objects to be accessed in a 
  * uniform manner.
  * 
- * This is by no means an extensive implementation of the ActivityStreams 
- * schema, which I don’t actually like very much. This interface is purely to
- * allow plugins to handle objects from multiple modules.
- * 
- * @author barnabywalters
+ * @author Barnaby Walters
  */
 interface ObjectInterface {
+    
+    public function getAttachments();
+    public function setAttachments(array $attachments);
+    
+    public function getAuthor();
+    public function setAuthor($author);
+    
+    /**
+     * Get Content
+     * 
+     * Natural-language description of the object encoded as a single JSON 
+     * String containing HTML markup. Visual elements such as thumbnail images 
+     * MAY be included. An object MAY contain a content property.
+     * 
+     * @return string
+     */
+    public function getContent();
+    public function setContent($content);
     
     /**
      * Get Display Name
@@ -27,27 +43,16 @@ interface ObjectInterface {
      * @return string
      */
     public function getDisplayName();
+    public function setDisplayName($displayName);
     
-    /**
-     * Get Content
-     * 
-     * Natural-language description of the object encoded as a single JSON 
-     * String containing HTML markup. Visual elements such as thumbnail images 
-     * MAY be included. An object MAY contain a content property.
-     * 
-     * @return string
-     */
-    public function getContent();
+    public function getDownstreamDuplicates();
+    public function setDownstreamDuplicates(array $downstreamDuplicates);
     
-    /**
-     * Get URL
-     * 
-     * An IRI [RFC3987] identifying a resource providing an HTML representation 
-     * of the object. An object MAY contain a url property
-     * 
-     * @return string
-     */
-    public function getUrl();
+    public function getId();
+    public function setId($id);
+    
+    public function getImage();
+    public function setImage($param);
     
     /**
      * Get Type
@@ -61,7 +66,8 @@ interface ObjectInterface {
      * 
      * @return string The activitystreams type of the object
      */
-    public function getType();
+    public function getObjectType();
+    public function setObjectType($type);
     
     /**
      * Get Published
@@ -72,6 +78,10 @@ interface ObjectInterface {
      * @return \DateTime
      */
     public function getPublished();
+    public function setPublished(DateTime $published);
+    
+    public function getSummary();
+    public function setSummary($summary);
     
     /**
      * Get Updated
@@ -82,6 +92,21 @@ interface ObjectInterface {
      * @return \DateTime
      */
     public function getUpdated();
+    public function setUpdated(DateTime $updated);
+    
+    public function getUpstreamDuplicates();
+    public function setUpstreamDuplicates(array $upstreamDuplicates);
+    
+    /**
+     * Get URL
+     * 
+     * An IRI [RFC3987] identifying a resource providing an HTML representation 
+     * of the object. An object MAY contain a url property.
+     * 
+     * @return string
+     */
+    public function getUrl();
+    public function setUrl($url);
 }
 
 // EOF
