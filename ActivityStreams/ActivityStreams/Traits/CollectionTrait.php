@@ -4,8 +4,11 @@ namespace ActivityStreams\ActivityStreams\Traits;
 
 /**
  * CollectionTrait
+ * 
+ * Implements setters/getters to satisfy CollectionInterface. Does not define
+ * properties, as visibility and docblocks are left up to the developer.
  *
- * @author barnabywalters
+ * @author Barnaby Walters
  */
 trait CollectionTrait {
     public function getTotalItems() {

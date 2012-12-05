@@ -1,18 +1,14 @@
 <?php
 
-/**
- * ActivityStreams
- * 
- * Things in this namespace are to help deal with activites and objects
- * 
- * @author Barnaby Walters http://waterpigs.co.uk <barnaby@waterpigs.co.uk>
- */
 namespace ActivityStreams\ActivityStreams;
 
 /**
  * Object
  * 
- * An activitystreams object
+ * Bland, basic implementation of ObjectInterface, using ObjectTrait. Useful
+ * for testing or compatibility purposes.
+ * 
+ * @author Barnaby Walters
  */
 class Object implements ObjectInterface {
     use Traits\ObjectTrait;

@@ -2,6 +2,8 @@
 
 namespace ActivityStreams\Event;
 
+use ActivityStreams\ActivityStreams\ActivityInterface;
+use ActivityStreams\ActivityStreams\Traits\ActivityTrait;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
@@ -9,19 +11,20 @@ use Symfony\Component\EventDispatcher\Event;
  *
  * @author barnabywalters
  */
-class ActivityEvent extends Event {
-
+class ActivityEvent extends Event implements ActivityInterface {
+    use ActivityTrait;
+    
     /**
      * Object
      * @var ActivityStreams\ActivityStreams\ObjectInterface $object
      */
     protected $object;
-    
+
     /**
      * Verb
      */
     public $verb;
-    
+
     /**
      * Actor
      */
@@ -36,23 +39,6 @@ class ActivityEvent extends Event {
         $this->verb = $verb;
         $this->object = $object;
         $this->actor = $actor;
-    }
-
-    /**
-     * Get Object
-     * 
-     * @return ActivityStreams\ActivityStream\ObjectInterface
-     */
-    public function getObject() {
-        return $this->object;
-    }
-    
-    public function getVerb() {
-        return $this->verb;
-    }
-    
-    public function getActor() {
-        return $this->actor;
     }
 }
 
