@@ -2,6 +2,8 @@
 
 namespace ActivityStreams\ActivityStreams;
 
+use ArrayObject;
+
 /**
  * Collection
  * 
@@ -14,72 +16,7 @@ namespace ActivityStreams\ActivityStreams;
  * should be to a JSON file, IMO this is not webby. It should be the URL of the 
  * resource, and it should respond intelligently to content negotiation.
  */
-class Collection {
-    /**
-     * Items
-     * 
-     * An array of Activities/Objects. The spec is actually a little unclear 
-     * about whether or this can contain Activities or Objects or both or 
-     * whether an activity *is* an object, so I am temted to take a lenient 
-     * approach at the moment, and say a collection can have *either* 
-     * 
-     * Activities or Objects **but not both**.
-     */
-    public $items;
-
-    /**
-     * Items After
-     * 
-     * An instance of {@see \DateTime} representing the earliest date an activity in $item occured
-     */
-    public $itemsAfter;
-
-    /**
-     * Items Before
-     * 
-     * An instance of {@see \DateTime}  representing the latest date an activity
-     * in $item occured
-     */
-    public $itemsBefore;
-
-    /**
-     * Items Per Page
-     * 
-     * If paged, the maximum number of items which will be contained in $items 
-     * per page
-     */
-    public $itemsPerPage;
-
-    /**
-     * Links
-     * 
-     * A collection of links (object) connecting this page of objects to other 
-     * pages of objects considered to be within the same set.
-     */
-    public $links;
-
-    /**
-     * Start Index
-     * 
-     * The absolute index of the first item in $items relative to the entire 
-     * collection, not just the current page.
-     */
-    public $startIndex;
-
-    /**
-     * Total Items
-     * 
-     * Non-negative number representing the number of objects in $items
-     */
-    public $totalItems;
-
-    /**
-     * URL
-     * 
-     * The URI/IRI of the current resource.
-     */
-    public $url;
-
+class Collection extends ArrayObject {
     /**
      * Construct
      * 
@@ -94,11 +31,15 @@ class Collection {
      * @param array $items An array of items to add to the collection
      * @todo Implement cleaning wherever best (in Activity/Object?)
      */
-    public function __construct($items = null) {
-        if (!empty($items)) {
-            $this->items = $items;
-            $this->totalItems = count($items);
-        }
+    public function __construct($items = array()) {
+        $this->offsetSet('items', $items);
+    }
+    
+    public function offsetGet($index) {
+        if ($index == 'totalItems')
+            return count($this->offsetGet ('items'));
+        
+        return parent::offsetGet($index);
     }
 
     /**
@@ -109,10 +50,10 @@ class Collection {
      * and the order can be set to asc.
      */
     public function orderItems($orderBy = 'published', $direction = 'desc') {
-        if (empty($this->items))
+        if (empty($this['items']))
             return false;
 
-        $orderedItems = $this->items;
+        $orderedItems = $this['items'];
 
         $result = usort($orderedItems, function ($a, $b) use ($orderBy, $direction) {
                     if ($a === $b) {
@@ -139,76 +80,10 @@ class Collection {
             return false;
         } else {
             // Worked
-            $this->items = $orderedItems;
+            $this['items'] = $orderedItems;
             return true;
         }
     }
-
-}
-
-/**
- * CollectionLinks
- * 
- * An object full of LinkObjects — the value of the $links property of a 
- * Collection
- * 
- * @todo put this in another file
- */
-class CollectionLinks {
-
-    /**
-     * First
-     * 
-     * A LinkObject referencing the first page in this multi-page collection
-     * 
-     * @see LinkObject
-     */
-    public $first;
-
-    /**
-     * Last
-     * 
-     * A LinkObject referencing the last page in this multi-page collection
-     * 
-     * @see LinkObject
-     */
-    public $last;
-
-    /**
-     * Prev
-     * 
-     * A LinkObject referencing the next page in this multi-page collection
-     * 
-     * @see LinkObject
-     */
-    public $prev;
-
-    /**
-     * Next
-     * 
-     * A LinkObject referencing the next page in this multi-page collection
-     * 
-     * @see LinkObject
-     */
-    public $next;
-
-    /**
-     * Current
-     * 
-     * A LinkObject referencing most up-to-date page in the collection
-     * 
-     * @see LinkObject
-     */
-    public $current;
-
-    /**
-     * Self
-     * 
-     * A LinkObject referencing this page of the multi-page collection
-     * 
-     * @see LinkObject
-     */
-    public $self;
 
 }
 

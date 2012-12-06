@@ -5,7 +5,6 @@ namespace ActivityStreams\Test\ActivityStreams;
 use ActivityStreams\ActivityStreams\Collection,
     ActivityStreams\ActivityStreams\Activity,
     ActivityStreams\ActivityStreams\Object,
-    ActivityStreams\ActivityStreams\LinkObject,
     PHPUnit_Framework_TestCase,
     DateTime;
 
@@ -20,7 +19,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
      */
     public function testEmptyConstructCreatesEmptyCollection() {
         $collection = new Collection();
-        $this->assertEquals(0, $collection->totalItems);
+        $this->assertEquals(0, $collection['totalItems']);
     }
 
     /**
@@ -37,7 +36,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
 
         $collection = new Collection($a);
 
-        $this->assertEquals(10, $collection->totalItems);
+        $this->assertEquals(10, $collection['totalItems']);
     }
 
     /**
@@ -61,16 +60,15 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
         // Assert shuffled
         $this->assertNotSame($as, $a, 'Failed asserting that the array has been shuffled correctly');
         $collection = new Collection($as);
-        $this->assertNotSame($a, $collection->items);
+        $this->assertNotSame($a, $collection['items']);
         $collection->orderItems();
-        $this->assertSame($a, $collection->items);
+        $this->assertSame($a, $collection['items']);
     }
 
     /**
      * @group unit
      */
     public function testOrderingItemsByDatePublishedDescWorks() {
-        $collection = new Collection();
 
         $a = array();
 
@@ -87,9 +85,9 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
         // Assert shuffled
         $this->assertNotSame($as, $a, 'Failed asserting that the array has been shuffled correctly');
         $collection = new Collection($as);
-        $this->assertNotSame($a, $collection->items);
+        $this->assertNotSame($a, $collection['items']);
         $collection->orderItems('published', 'asc');
-        $this->assertSame(array_reverse($a), $collection->items);
+        $this->assertSame(array_reverse($a), $collection['items']);
     }
 
     /**
@@ -97,7 +95,6 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
      */
     public function testOrderingItemsByDisplayNameWorks() {
         $alphabet = 'abcdefghijklmnop';
-        $collection = new Collection();
 
         $a = array();
 
@@ -113,9 +110,9 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
         // Assert shuffled
         $this->assertNotSame($as, $a, 'Failed asserting that the array has been shuffled correctly');
         $collection = new Collection($as);
-        $this->assertNotSame($a, $collection->items);
+        $this->assertNotSame($a, $collection['items']);
         $collection->orderItems('displayName');
-        $this->assertSame($a, $collection->items);
+        $this->assertSame($a, $collection['items']);
     }
 
 }

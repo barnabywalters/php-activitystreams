@@ -7,7 +7,7 @@ use ArrayObject;
 /**
  * Object
  * 
- * Bland, basic implementation of ObjectInterface, using ObjectTrait. Useful
+ * Bland, basic implementation of ObjectInterface. Useful
  * for testing or compatibility purposes.
  * 
  * @author Barnaby Walters
