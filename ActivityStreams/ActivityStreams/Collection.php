@@ -14,8 +14,7 @@ namespace ActivityStreams\ActivityStreams;
  * should be to a JSON file, IMO this is not webby. It should be the URL of the 
  * resource, and it should respond intelligently to content negotiation.
  */
-class Collection implements CollectionInterface {
-    use Traits\CollectionTrait;
+class Collection {
     /**
      * Items
      * 
