@@ -18,10 +18,10 @@ use ArrayObject;
  */
 class Activity extends ArrayObject {
     public function __construct($verb = 'post', $object = null, $actor = null, array $params = []) {
+        parent::__construct($params);
         $this['verb'] = $verb;
         $this['object'] = $object;
         $this['actor'] = $actor;
-        parent::__construct($params);
     }
 }
 
