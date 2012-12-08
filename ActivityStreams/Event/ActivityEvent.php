@@ -3,7 +3,7 @@
 namespace ActivityStreams\Event;
 
 use ActivityStreams\ActivityStreams\ActivityInterface;
-use ActivityStreams\ActivityStreams\Traits\ActivityTrait;
+use ActivityStreams\ActivityStreams\Traits\ArrayAccessTrait;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
@@ -15,33 +15,27 @@ use Symfony\Component\EventDispatcher\Event;
  * @author Barnaby Walters
  */
 class ActivityEvent extends Event implements ActivityInterface {
-    use ActivityTrait;
+    use ArrayAccessTrait;
     
-    /**
-     * Object
-     * @var ActivityStreams\ActivityStreams\ObjectInterface $object
-     */
-    protected $object;
-
-    /**
-     * Verb
-     */
-    public $verb;
-
-    /**
-     * Actor
-     */
-    public $actor;
-
+    /** @var array Array of strings, expressing the end user should be notified of */
+    protected $warnings = [];
+    
     /**
      * Constructor
      * 
      * @param ActivityStreams\ActivityStreams\ObjectInterface $object
      */
     public function __construct($verb, ObjectInterface $object, ObjectInterface $actor = null, array $parameters = []) {
-        $this->verb = $verb;
-        $this->object = $object;
-        $this->actor = $actor;
+        $this->storage = $parameters;
+        $this['verb'] = $verb;
+        $this['object'] = $object;
+        $this['actor'] = $actor;
+    }
+    
+    public function addWarning($warning) {
+        if (is_string($warning))
+            return $this->warnings[] = $warning;
+        throw new Exception('Warning must be a string');
     }
 }
 

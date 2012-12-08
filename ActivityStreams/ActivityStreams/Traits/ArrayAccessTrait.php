@@ -8,7 +8,7 @@ namespace ActivityStreams\ActivityStreams;
  * @author barnabywalters
  */
 class ArrayAccessTrait implements \ArrayAccess {
-    private $storage;
+    protected $storage;
     
     public function offsetExists($offset) {
         return array_key_exists($offset, $this->storage);
