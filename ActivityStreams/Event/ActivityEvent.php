@@ -38,7 +38,7 @@ class ActivityEvent extends Event implements ActivityInterface {
      * 
      * @param ActivityStreams\ActivityStreams\ObjectInterface $object
      */
-    public function __construct($verb, $object, $actor = null) {
+    public function __construct($verb, ObjectInterface $object, ObjectInterface $actor = null, array $parameters = []) {
         $this->verb = $verb;
         $this->object = $object;
         $this->actor = $actor;
