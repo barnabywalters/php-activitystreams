@@ -12,11 +12,8 @@ use ArrayObject;
  * 
  * @author Barnaby Walters
  */
-class Object extends ArrayObject implements ObjectInterface {
-    public function __construct($type, array $params = array()) {
-        parent::__construct($params);
-        $this->offsetSet('type', $type);
-    }
+class Object extends ArrayObject implements ObjectInterface, \JsonSerializable {
+    use Traits\ObjectTrait;
     
     public function jsonSerialize() {
         return $this->storage;

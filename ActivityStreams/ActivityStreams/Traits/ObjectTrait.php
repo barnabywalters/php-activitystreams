@@ -7,12 +7,16 @@ use DateTime;
 /**
  * ObjectTrait
  * 
- * Satisfies ObjectInterface with setter and getter methods. Does not define
- * properties as visibility, docblocks etc. are up to the developer to define.
+ * Satisfies ObjectInterface’s requirements.
  *
  * @author Barnaby Walters
  */
 trait ObjectTrait {
+    public function __construct($type, array $params = array()) {
+        parent::__construct($params);
+        $this->offsetSet('type', $type);
+    }
+    
     public function addAttachment(ObjectInterface $attachment) {
         return array_push($this['attachments'], $attachment);
     }
@@ -36,7 +40,6 @@ trait ObjectTrait {
     public function addUpstreamDuplicates(array $urls) {
         $this['upstreamDuplicates'] = array_merge($this['upstreamDuplicates'],
                 $urls);
-    }
     }
 }
 
