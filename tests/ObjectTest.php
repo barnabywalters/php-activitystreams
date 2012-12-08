@@ -29,11 +29,32 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('This is the content. It should be quite a bit longer.', $object['content']);
     }
     
-    public function testAddSingleAttachment() {
+    public function testAddSingleAttachmentToEmptyArray() {
         $attachment = new Object('note');
         $object = new Object('article');
         $object->addAttachment($attachment);
         $this->assertContains($attachment, $object['attachments']);
+    }
+    
+    public function testAddSingleAttachmentToExistingArray() {
+        $attachment = new Object('note', [
+            'attachments' => []
+        ]);
+        $object = new Object('article');
+        $object->addAttachment($attachment);
+        $this->assertContains($attachment, $object['attachments']);
+    }
+    
+    public function testAddArrayOfAttachments() {
+        $attachments = [];
+        for ($i = 1;$i < 5;$i++) {
+            $attachments[] = new Object('note', ['displayName' => (string) $i]);
+        }
+        
+        $object = new Object('note');
+        $object->addAttachments($attachments);
+        
+        $this->assertSame($attachments, $object['attachments']);
     }
 }
 
