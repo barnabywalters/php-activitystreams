@@ -2,6 +2,7 @@
 
 namespace ActivityStreams\ActivityStreams;
 
+use ActivityStreams\ActivityStreams\Traits\ObjectTrait;
 use ArrayObject;
 
 /**
@@ -13,7 +14,12 @@ use ArrayObject;
  * @author Barnaby Walters
  */
 class Object extends ArrayObject implements ObjectInterface, \JsonSerializable {
-    use Traits\ObjectTrait;
+    use ObjectTrait;
+    
+    public function __construct($type, array $params = []) {
+        parent::__construct($params);
+        $this->offsetSet('type', $type);
+    }
     
     public function jsonSerialize() {
         return $this->storage;

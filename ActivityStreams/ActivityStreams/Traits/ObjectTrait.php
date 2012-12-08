@@ -2,6 +2,7 @@
 
 namespace ActivityStreams\ActivityStreams\Traits;
 
+use ActivityStreams\ActivityStreams\ObjectInterface;
 use DateTime;
 
 /**
@@ -12,11 +13,6 @@ use DateTime;
  * @author Barnaby Walters
  */
 trait ObjectTrait {
-    public function __construct($type, array $params = array()) {
-        parent::__construct($params);
-        $this->offsetSet('type', $type);
-    }
-    
     public function addAttachment(ObjectInterface $attachment) {
         return array_push($this['attachments'], $attachment);
     }
