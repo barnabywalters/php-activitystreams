@@ -28,6 +28,13 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('Blah blah blah blah', $object['summary']);
         $this->assertEquals('This is the content. It should be quite a bit longer.', $object['content']);
     }
+    
+    public function testAddSingleAttachment() {
+        $attachment = new Object('note');
+        $object = new Object('article');
+        $object->addAttachment($attachment);
+        $this->assertContains($attachment, $object['attachments']);
+    }
 }
 
 // EOF
