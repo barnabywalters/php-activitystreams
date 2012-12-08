@@ -12,7 +12,7 @@ use ArrayObject;
  * 
  * @author Barnaby Walters
  */
-class Object extends ArrayObject {
+class Object extends ArrayObject implements ObjectInterface {
     public function __construct($type, array $params = array()) {
         parent::__construct($params);
         $this->offsetSet('type', $type);
