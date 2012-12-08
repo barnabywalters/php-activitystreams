@@ -31,10 +31,9 @@ class Collection extends ArrayObject implements CollectionInterface {
      * cleaned up.
      * 
      * @param array $items An array of items to add to the collection
-     * @todo Implement cleaning wherever best (in Activity/Object?)
      */
-    public function __construct($items = array()) {
-        $this->offsetSet('items', $items);
+    public function __construct($items = []) {
+        $this['items'] = $items;
     }
 }
 

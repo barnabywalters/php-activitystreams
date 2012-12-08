@@ -2,6 +2,9 @@
 
 namespace ActivityStreams\ActivityStreams\Traits;
 
+use ActivityStreams\ActivityStreams\ActivityInterface;
+use ActivityStreams\ActivityStreams\ObjectInterface;
+
 /**
  * CollectionTrait
  * 
@@ -16,6 +19,21 @@ trait CollectionTrait {
             return count($this->offsetGet ('items'));
         
         return parent::offsetGet($index);
+    }
+    
+    public function addItem($item) {
+        if (!$item instanceof ObjectInterface
+        and !$item instanceof ActivityInterface)
+            throw new \InvalidArgumentException('addItem() only accepts instances of ObjectInterface or ActivityInterface');
+        
+        $this['items'][] = $item;
+    }
+    
+    /**
+     * @todo make this check instanceof *Interface
+     */
+    public function addItems(array $items) {
+        array_push($this['items'], $items);
     }
     
     /**
