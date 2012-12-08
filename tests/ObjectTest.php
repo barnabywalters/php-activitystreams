@@ -63,6 +63,27 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
         $object->addDownstreamDuplicate($url);
         $this->assertContains($url, $object['downstreamDuplicates']);
     }
+    
+    public function testAddArrayOfDownstreamDuplicates() {
+        $urls = ['http://example.com/articles/12'];
+        $object = new Object('articles');
+        $object->addDownstreamDuplicates($urls);
+        $this->assertSame($urls, $object['downstreamDuplicates']);
+    }
+    
+    public function testAddSingleUpstreamDuplicate() {
+        $url = 'http://example.org/notes/500';
+        $object = new Object('note');
+        $object->addUpstreamDuplicate($url);
+        $this->assertContains($url, $object['upstreamDuplicates']);
+    }
+    
+    public function testAddArrayOfUpstreamDuplicates() {
+        $urls = ['http://example.com/articles/12'];
+        $object = new Object('articles');
+        $object->addUpstreamDuplicates($urls);
+        $this->assertSame($urls, $object['upstreamDuplicates']);
+    }
 }
 
 // EOF
