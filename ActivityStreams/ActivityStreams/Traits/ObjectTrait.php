@@ -42,6 +42,7 @@ trait ObjectTrait {
             $this['upstreamDuplicates'] = [];
         return array_push($this['upstreamDuplicates'], $url);
     }
+    
     public function addUpstreamDuplicates(array $urls) {
         if (!array_key_exists('upstreamDuplicates', $this))
             $this['upstreamDuplicates'] = [];
