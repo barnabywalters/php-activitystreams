@@ -16,6 +16,12 @@ class ActivityTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('update', $activity['verb']);
         $this->assertEquals('Blah', $activity['object']['content']);
     }
+    
+    public function testCanChangeProperties() {
+        $activity = new Activity('post', null, null, ['content' => 'f']);
+        $activity['content'] = 'More content';
+        $this->assertEquals('More content', $activity['content']);
+    }
 }
 
 // EOF

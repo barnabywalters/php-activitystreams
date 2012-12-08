@@ -16,9 +16,10 @@ use ArrayObject;
  * 
  * @author Barnaby Walters
  */
-class Activity extends ArrayObject {
-    public function __construct($verb = 'post', $object = null, $actor = null, array $params = []) {
-        parent::__construct($params);
+class Activity extends ArrayObject implements ActivityInterface {
+    
+    public function __construct($verb = 'post', ObjectInterface $object = null, ObjectInterface $actor = null, array $properties = []) {
+        parent::__construct($properties);
         $this['verb'] = $verb;
         $this['object'] = $object;
         $this['actor'] = $actor;
