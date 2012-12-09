@@ -18,7 +18,7 @@ class Object extends ArrayObject implements ObjectInterface, \JsonSerializable {
     
     public function __construct($type, array $params = []) {
         parent::__construct($params);
-        $this->offsetSet('type', $type);
+        $this->offsetSet('objectType', $type);
     }
     
     public function jsonSerialize() {
