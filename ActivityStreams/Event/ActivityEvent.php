@@ -25,7 +25,7 @@ class ActivityEvent extends Event implements ActivityInterface {
      * 
      * @param ActivityStreams\ActivityStreams\ObjectInterface $object
      */
-    public function __construct($verb, ObjectInterface $object, ObjectInterface $actor = null, array $parameters = []) {
+    public function __construct($verb = 'post', ObjectInterface $object, ObjectInterface $actor = null, array $parameters = []) {
         $this->storage = $parameters;
         $this['verb'] = $verb;
         $this['object'] = $object;
