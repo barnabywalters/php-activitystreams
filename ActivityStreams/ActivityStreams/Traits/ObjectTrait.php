@@ -12,10 +12,16 @@ use ActivityStreams\ActivityStreams\ObjectInterface;
  * @author Barnaby Walters
  */
 trait ObjectTrait {
+    private function appendToKey($key, $value) {
+        $array = $this[$key];
+        $array[] = $value;
+        return $array;
+    }
+    
     public function addAttachment(ObjectInterface $attachment) {
         if (!array_key_exists('attachments', $this))
             $this['attachments'] = [];
-        return $this['attachments'] = array_push($this['attachments'], $attachment);
+        return $this['attachments'] = $this->appendToKey('attachments', $attachment);
     }
     
     public function addAttachments(array $attachments) {
@@ -27,7 +33,7 @@ trait ObjectTrait {
     public function addDownstreamDuplicate($url) {
         if (!array_key_exists('downstreamDuplicates', $this))
             $this['downstreamDuplicates'] = [];
-        return $this['downstreamDuplicates'] = array_push($this['downstreamDuplicates'], $url);
+        return $this['downstreamDuplicates'] = $this->appendToKey('downstreamDuplicates', $url);
     }
     
     public function addDownstreamDuplicates(array $urls) {
@@ -39,7 +45,7 @@ trait ObjectTrait {
     public function addUpstreamDuplicate($url) {
         if (!array_key_exists('upstreamDuplicates', $this))
             $this['upstreamDuplicates'] = [];
-        return $this['upstreamDuplicates'] = array_push($this['upstreamDuplicates'], $url);
+        return $this['upstreamDuplicates'] = $this->appendToKey('upstreamDuplicates', $url);
     }
     
     public function addUpstreamDuplicates(array $urls) {
