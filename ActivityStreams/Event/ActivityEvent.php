@@ -33,6 +33,25 @@ class ActivityEvent extends Event implements ActivityInterface {
         $this['actor'] = $actor;
     }
     
+    /**
+     * BC for plugins written before using arrayaccess. New plugins should use
+     * `$event['object']`, as `getObject()` WILL be deprecated in the future.
+     * @return \ActivityStreams\Event\ActivityEvent
+     */
+    public function getObject() {
+        return $this['object'];
+    }
+    
+    /**
+     * BC for plugins written before using ArrayAccess. New plugins should use 
+     * `$event['object'] = $object`, as `setObject()` WILL be deprecated in the
+     * future.
+     * @param \ActivityStreams\ActivityStreams\ObjectInterface $object
+     */
+    public function setObject(ObjectInterface $object) {
+        $this['object'] = $object;
+    }
+    
     public function addWarning($warning) {
         if (is_string($warning))
             return $this->warnings[] = $warning;
