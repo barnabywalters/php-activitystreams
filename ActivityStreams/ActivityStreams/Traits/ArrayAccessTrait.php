@@ -1,6 +1,6 @@
 <?php
 
-namespace ActivityStreams\ActivityStreams;
+namespace ActivityStreams\ActivityStreams\Traits;
 
 /**
  * ArrayAccessTrait
