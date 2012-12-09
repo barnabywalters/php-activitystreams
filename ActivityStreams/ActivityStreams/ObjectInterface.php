@@ -15,13 +15,6 @@ use DateTime;
  */
 interface ObjectInterface extends ArrayAccess {
     /**
-     * Constructor
-     * @param string $type
-     * @param array $params An assoc. array of properties to set
-     */
-    public function __construct($type, array $params = []);
-    
-    /**
      * Add Attachment
      * @param \ActivityStreams\ActivityStreams\ObjectInterface $attachment
      */
