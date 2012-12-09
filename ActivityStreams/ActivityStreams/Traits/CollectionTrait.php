@@ -52,11 +52,11 @@ trait CollectionTrait {
         $result = usort($orderedItems, function ($a, $b) use ($orderBy, $direction) {
                     if ($a === $b) {
                         $diff = 0;
-                    } else if (is_a($a->{$orderBy}, '\DateTime')) {
+                    } else if (is_a($a[$orderBy], '\DateTime')) {
                         // 1 if $a before $b, -1 vice versa
-                        $diff = ($a->{$orderBy} > $b->{$orderBy}) ? 1 : -1;
-                    } else if (is_string($a->{$orderBy})) {
-                        $diff = strcmp($a->{$orderBy}, $b->{$orderBy});
+                        $diff = ($a[$orderBy] > $b[$orderBy]) ? 1 : -1;
+                    } else if (is_string($a[$orderBy])) {
+                        $diff = strcmp($a[$orderBy], $b[$orderBy]);
                     } else {
                         // Uncomparable, so return 0
                         $diff = 0;
