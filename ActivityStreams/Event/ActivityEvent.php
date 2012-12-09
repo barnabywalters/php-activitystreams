@@ -2,6 +2,7 @@
 
 namespace ActivityStreams\Event;
 
+use ActivityStreams\ActivityStreams\ObjectInterface;
 use ActivityStreams\ActivityStreams\ActivityInterface;
 use ActivityStreams\ActivityStreams\Traits\ArrayAccessTrait;
 use Symfony\Component\EventDispatcher\Event;
