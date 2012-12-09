@@ -7,8 +7,8 @@ use ArrayObject;
 /**
  * Activity
  * 
- * A bland base implementation of ActivityInterface, using ActivityTrait. Useful
- * for testing or compatibility purposes (i.e. wrapping non-AS data for use with
+ * A bland base implementation of ActivityInterface. Useful for testing or 
+ * compatibility purposes (i.e. wrapping non-AS data for use with 
  * activitystreams-compatible code).
  * 
  * The most common ActivityStreams “unit”, this represents a discrete action by 
