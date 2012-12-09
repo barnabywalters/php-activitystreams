@@ -15,7 +15,7 @@ trait ObjectTrait {
     public function addAttachment(ObjectInterface $attachment) {
         if (!array_key_exists('attachments', $this))
             $this['attachments'] = [];
-        return $this['attachments'][] = $attachment;
+        return $this['attachments'] = array_push($this['attachments'], $attachment);
     }
     
     public function addAttachments(array $attachments) {
@@ -27,7 +27,7 @@ trait ObjectTrait {
     public function addDownstreamDuplicate($url) {
         if (!array_key_exists('downstreamDuplicates', $this))
             $this['downstreamDuplicates'] = [];
-        return $this['downstreamDuplicates'][] = $url;
+        return $this['downstreamDuplicates'] = array_push($this['downstreamDuplicates'], $url);
     }
     
     public function addDownstreamDuplicates(array $urls) {
@@ -39,14 +39,13 @@ trait ObjectTrait {
     public function addUpstreamDuplicate($url) {
         if (!array_key_exists('upstreamDuplicates', $this))
             $this['upstreamDuplicates'] = [];
-        return array_push($this['upstreamDuplicates'], $url);
+        return $this['upstreamDuplicates'] = array_push($this['upstreamDuplicates'], $url);
     }
     
     public function addUpstreamDuplicates(array $urls) {
         if (!array_key_exists('upstreamDuplicates', $this))
             $this['upstreamDuplicates'] = [];
-        $this['upstreamDuplicates'] = array_merge($this['upstreamDuplicates'],
-                $urls);
+        $this['upstreamDuplicates'] = $this['upstreamDuplicates'] + $urls;
     }
 }
 
