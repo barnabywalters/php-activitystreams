@@ -7,7 +7,7 @@ namespace ActivityStreams\ActivityStreams\Traits;
  *
  * @author barnabywalters
  */
-class ArrayAccessTrait implements \ArrayAccess {
+trait ArrayAccessTrait {
     protected $storage;
     
     public function offsetExists($offset) {
