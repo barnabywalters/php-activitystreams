@@ -49,8 +49,8 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
 
         for ($i = 0; $i < 9; $i++) {
             $a[$i] = new Activity();
-            $a[$i]->published = DateTime::createFromFormat('Y-m-d', '2012-11-0' . $i);
-            $a[$i]->displayName = 'Activity number ' . $i;
+            $a[$i]['published'] = DateTime::createFromFormat('Y-m-d', '2012-11-0' . $i);
+            $a[$i]['displayName'] = 'Activity number ' . $i;
         }
 
         // Create a shuffled version of the array
@@ -74,8 +74,8 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
 
         for ($i = 0; $i < 9; $i++) {
             $a[$i] = new Activity();
-            $a[$i]->published = DateTime::createFromFormat('Y-m-d', '2012-11-0' . $i);
-            $a[$i]->displayName = 'Activity number ' . $i;
+            $a[$i]['published'] = DateTime::createFromFormat('Y-m-d', '2012-11-0' . $i);
+            $a[$i]['displayName'] = 'Activity number ' . $i;
         }
 
         // Create a shuffled version of the array
@@ -100,7 +100,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
 
         for ($i = 0; $i < 9; $i++) {
             $a[$i] = new Activity();
-            $a[$i]->displayName = $alphabet[$i];
+            $a[$i]['displayName'] = $alphabet[$i];
         }
 
         // Create a shuffled version of the array
