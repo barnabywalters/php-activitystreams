@@ -19,37 +19,37 @@ trait ObjectTrait {
     }
     
     public function addAttachment(ObjectInterface $attachment) {
-        if (!array_key_exists('attachments', $this))
+        if (!$this->offsetExists('attachments'))
             $this['attachments'] = [];
         return $this->appendToKey('attachments', $attachment);
     }
     
     public function addAttachments(array $attachments) {
-        if (!array_key_exists('attachments', $this))
+        if (!$this->offsetExists('attachments'))
             $this['attachments'] = [];
         $this['attachments'] = array_merge($this['attachments'], $attachments);
     }
     
     public function addDownstreamDuplicate($url) {
-        if (!array_key_exists('downstreamDuplicates', $this))
+        if (!$this->offsetExists('downstreamDuplicates'))
             $this['downstreamDuplicates'] = [];
         return $this->appendToKey('downstreamDuplicates', $url);
     }
     
     public function addDownstreamDuplicates(array $urls) {
-        if (!array_key_exists('downstreamDuplicates', $this))
+        if (!$this->offsetExists('downstreamDuplicates'))
             $this['downstreamDuplicates'] = [];
         $this['downstreamDuplicates'] = array_merge($this['downstreamDuplicates'], $urls);
     }
     
     public function addUpstreamDuplicate($url) {
-        if (!array_key_exists('upstreamDuplicates', $this))
+        if (!$this->offsetExists('upstreamDuplicates'))
             $this['upstreamDuplicates'] = [];
         return $this->appendToKey('upstreamDuplicates', $url);
     }
     
     public function addUpstreamDuplicates(array $urls) {
-        if (!array_key_exists('upstreamDuplicates', $this))
+        if (!$this->offsetExists('upstreamDuplicates'))
             $this['upstreamDuplicates'] = [];
         $this['upstreamDuplicates'] = array_merge($this['upstreamDuplicates'], $urls);
     }
